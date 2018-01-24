@@ -1,12 +1,9 @@
 ---
 layout: post
 title:      "Dragon Age: Origins and the Tic Tac Toe Computer AI"
-date:       2018-01-24 20:00:44 +0000
+date:       2018-01-24 15:00:45 -0500
 permalink:  dragon_age_origins_and_the_tic_tac_toe_computer_ai
 ---
-
-
-
 
 I never thought my that my love for video games (specifically role-playing games, or RPGs) would ever help me in my professional life. Hell, I certainly know that my parents certainly thought it was a waste of time. Well Mom and Dad, to our surprise, my experiences playing RPGs helped immensely with building the Computer AI for Ruby Tic Tac Toe project.
 
