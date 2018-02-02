@@ -4,9 +4,9 @@ header-img: img/home-bg.png
 email: maskiella@gmail.com
 copyright_name: saurookadook
 description: > # this means to ignore newlines until "baseurl:"
-  Cats, code, music, games, politics, and whatever else I can think of
+  Cats, code, music, games, politics, and who knows what else
 baseurl: "" # the subpath of your site, e.g. /blog
-twitter_username: 
+twitter_username:
 github_username:  saurookadook
 learn_profile: saurookadook
 email_username: maskiella@gmail.com
