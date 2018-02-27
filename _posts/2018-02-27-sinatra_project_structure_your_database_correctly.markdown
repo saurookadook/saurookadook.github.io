@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Sinatra Project: STRUCTURE YOUR DATABASE CORRECTLY"
-date:       2018-02-27 20:29:26 +0000
+date:       2018-02-27 15:29:27 -0500
 permalink:  sinatra_project_structure_your_database_correctly
 ---
 
