@@ -1,11 +1,11 @@
 ---
 layout: post
 title:      "Quirky Bits of JS: Scope and Hoisting"
-date:       2018-07-07 21:44:47 +0000
+date:       2018-07-07 17:44:48 -0400
 permalink:  quirky_bits_of_js_scope_and_hoisting
 ---
 
-Because of the way in which the JavaScript language functions (and the primary context in which it does so, via a web browser), it brings with it a fair number of oddities which appear in very few other programming languages. While the main intent of this post will be to discuss some of the issues one may encounter in JavaScript in relation to scope and hoisting, I would like to preface that with a (somewhat) brief review of variables and functions
+Because of the way in which the JavaScript language functions (and the primary context in which it does so, via a web browser), it brings with it a fair number of oddities which appear in very few other object-oriented programming languages. While the main intent of this post will be to discuss some of the issues one may encounter in JavaScript in relation to scope and hoisting, I would like to preface that with a (somewhat) brief review of variables and functions
 
 ## Variables 
 JavaScript comes with three possibilities for variable declaration: `var`, `let`, and `const`. All of them have their own general uses, though `var` and `let` are nearly identical.
@@ -27,8 +27,10 @@ Pretty standard and expected, but what about:
 ```
 var person = “Cpt. Hook”;
 	//=> undefined
+	
 var person = “Rick Astley”;
 	//=> undefined
+	
 person;
 	//=> “Rick Astley”
 ```
@@ -84,6 +86,7 @@ needABeer();
 ```
 
 When it comes to the latter, they can be declared similarly to ‘named functions’:
+
 ```
 functions () {
 	return “I’m in a glass case of emotion!”;
@@ -91,6 +94,7 @@ functions () {
 ```
 
 However I’m sure you already notice a pretty big issue with this: how are we supposed to call them if they don’t have a name? That’s why they’re generally used with event handlers, as an argument for other methods or functions, or assigned to a variable when its initialized:
+
 ```
 // event handler
 let button = document.querySelector(‘big button’);
@@ -117,6 +121,7 @@ slowDown();
 
 ## Scope
 Before things get weird, some scope basics. In JavaScript, scope refers to the set of rules which dictate how declared variables and functions are stored and how they can be retrieved for later use. The main scope within JavaScript is known as ‘global scope’. For example, every declaration in the above examples would be considered in ‘global scope’, meaning that they can be accessed by anything else similarly declared in global scope. Aside from ‘global scope’, there is also ‘local scope’, which has several subsets but generally refers to any variables which are declared or initialized within a function or block of code, thereby making it inaccessible to any other functions or variables not defined within its scope:
+
 ```
 function logStuff() {
 	const stuff = “gibberish and rubbish”;
@@ -182,6 +187,7 @@ function meow() {
 Seems like it shouldn’t work, doesn’t it? Well, due to JavaScripts two-part phase when running code, both of these examples will produce the exact same result and is an example of function hoisting. In the latter, the function declaration will be saved in memory in the compilation phase and then the invocation will occur (with the declared function still in memory) during the execution phase.
 
 ‘So if there is function hoisting, is there also variable hoisting?’, you might ask. You bet and this leads to one of the biggest issues with using `var`. Because of the way `var` works (in this case, specifically the way it is stored in the compilation phase), nonsense like the following won’t break when run:
+
 ```
 function isConfusing() {
 	console.log(message);
@@ -195,6 +201,7 @@ isConfusing();
 ```
 
 Yeah….not ideal and, honestly, pretty confusing at first glance. However, what is essentially happening during the compilation phase (and therefore allowing the code to run) is the following:
+
 ```
 function isConfusing() {
 	var message;
@@ -206,6 +213,7 @@ function isConfusing() {
 ```
 
 Given this format, it’s easy to see why the code is still being allowed to run, though imagine a similar situation involving vastly more complex and intricate code, and then trying to debug an issue where code doesn’t break when using (essentially) improper practices. I shudder to even think about it. And with this in mind, I’ll leave you with why `let` is a beacon of hope among the darkness of `var`’s shadow. Unlike `var`, `let` will not hoist it’s declarations to the top of scope, thereby stopping the problem from above:
+
 ```
 theLight;
 
