@@ -88,7 +88,7 @@ needABeer();
 When it comes to the latter, they can be declared similarly to ‘named functions’:
 
 ```
-functions () {
+function () {
 	return “I’m in a glass case of emotion!”;
 }
 ```
