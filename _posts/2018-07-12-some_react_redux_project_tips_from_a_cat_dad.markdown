@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Some React/Redux Project Tips From A Cat Dad"
-date:       2018-07-12 19:00:37 +0000
+date:       2018-07-12 15:00:38 -0400
 permalink:  some_react_redux_project_tips_from_a_cat_dad
 ---
 
@@ -85,7 +85,7 @@ At this point, `props.post.comments` will be undefined and, therefore, break. In
 Though this approach works, I can’t help but feel that having a `loading` and `loaded` attribute for each part of store reliant on information from an API seems not only excessive, but very prone to error. However, my reasoning for using both is that while just having `loading` would be make it easier (set default value to `true`, which changes to `false` in the appropriate reducer, and change `hasData` in conditional to `!this.props.post.loading` in order to render `PostDisplay`), it creates confusion when conceptualizing the flow of the application. The first time the component renders, is the data from your API actually loading/fetching? No, that doesn't happen until the component containing a fetch request is mounted (or attempting to mount). Another reasoning for this implementation is for potentially more flexibility in the flow of your reducer and the possibility of additional control flow within your components.
 
 ## (Temporary) User Authentication
-Another big ol’ elephant in the room for this project is dealing with user authentication (assuming that's something normal for the application being built). Again, my solution isn’t ideal (nor should/would it ever be part of a functioning application in the real world), but for the sake of being able to mimic the flow of how a site with users might function, I came up with the following for the `create` actions in my controllers:
+Another big ol’ elephant in the room for this project is dealing with user authentication (assuming that's something normal for the application being built). From the opinions of various colleagues, it's been commonly mentioned that user authentication in React is quite difficult. While that is something I'm interested in learning to configure, I wanted my project to handle adding users in a way that was meaningful but similar to the way in which It might be handled in a real application. Again, my solution isn’t ideal (nor should/would it ever be part of a functioning application in the real world), but for the sake of being able to mimic the flow of how a site with users might function, I came up with the following for the `create` actions in my controllers:
 
 ```
 class CommentsController < ApplicationController
