@@ -11,7 +11,7 @@ Having a background as a musician, I have found myself constantly drawing compar
 As a sort of continuation to my [Composing Code](https://saurookadook.github.io/composing_code) post, I’d like to offer the following:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HeG9VFBZXcs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<br></br>
+<br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LL490-13DRc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
