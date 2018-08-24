@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "The Odyssey That Was My First Rails App"
-date:       2018-04-09 18:48:12 +0000
+date:       2018-04-09 14:48:13 -0400
 permalink:  the_odyssey_that_was_my_first_rails_app
 ---
 
@@ -15,33 +15,7 @@ My first blunder was attempting to use Devise for my user authentication, despit
 
 As with my Sinatra project, my second challenge came with setting up my database in a sensible way. After changing around my migrations entirely once I decided against using Devise, I still ran across issues which I hadn't encountered before. After several (emphasis on *several*) revisions, my database ended up containing six tables: Users, Pets, Shelters, Employees, Caretakers, and Addresses. The main issue presented itself with the relationship of Pets to both Users and Shelters. My idea was that Users and Shelters both have many Pets, but a Pet could only belong to one User or Shelter at any given time. Enter Polymorphic Associations, a type of relationship I was not familiar with, but with which I was quickly forced to become accustomed. These types of associations allow the `belongs_to` component of a `has_many` relationship to become flexible, by including special columns in the migration and a slight change to the usual syntax in the appropriate models:
 
-```
-# in migration
-class CreatePets < ActiveRecord::Migration[5.1]
-   def change
-	    create_table :pets do |t|
-			   ...
-				 
-				 t.references :owner, polymorphic: true, index: true
-				 
-				 ...
-		 end
-  end
-end
-
-# in models
-class Pet < ApplicationRecord
-   belongs_to :owner, polymorphic: true
-end
-
-class User < ApplicationRecord
-   has_many :pets, as: :owner
-end
-
-class Shelter < ApplicationRecord
-   has_many :pets, as: :owner
-end
-```
+https://gist.github.com/saurookadook/d7bbfd12a215c10c711b2eef39e8afd3
 
 The above code in the `Pets` migration creates `owner_id` and `owner_type` columns, both of which either relate to a User or Shelter. For example, if `jim` (`User`) has an `id` of `1` and is the owner of `booboo`, the `Pet` instance of `booboo` will have the attributes `owner_id = 1` and `owner_type = "User"`, but if `booboo`'s owner is `SPCA`(`Shelter`), which has an `id` of `3`, then `booboo` will instead have the attributes `owner_id = 3` and `owner_type = "Shelter"`. Moreover, these associations can be changed by assigning a new owner to a pet and then saving that instance, simultaneously adding that pet to the new owner and removing it from the previous one.
 
